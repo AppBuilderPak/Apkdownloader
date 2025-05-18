@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APK Downloader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"] {
+      width: 90%;
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    #result a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    #result p {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>APK Downloader</h2>
+    <p>Paste the Google Play Store app link below:</p>
+    <input type="text" id="linkInput" placeholder="e.g. https://play.google.com/store/apps/details?id=com.whatsapp">
+    <br>
+    <button onclick="generateLink()">Get APK Download Link</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function generateLink() {
+      var input = document.getElementById("linkInput").value;
+      var match = input.match(/id=([a-zA-Z0-9_.]+)/);
+      if (match) {
+        var packageName = match[1];
+        var apkLink = "https://apkcombo.com/en/apk-downloader/?q=" + packageName;
+        document.getElementById("result").innerHTML =
+          "<p><a href='" + apkLink + "' target='_blank'>Download APK</a></p>";
+      } else {
+        document.getElementById("result").innerHTML =
+          "<p style='color:red;'>Invalid Play Store link. Please enter a valid URL.</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>
